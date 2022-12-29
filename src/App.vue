@@ -14,8 +14,6 @@
           <h1 class="logo">王吉祥的站</h1>
         </div>
 
-        
-
       </div>
       
       
@@ -24,7 +22,7 @@
         <div class="tab_title">QQ账号登录</div>
         <div class="login-all">
           <div class="login-wrapper">
-          
+            <child-comp v-if="isShowChild"></child-comp>
 
           <div class="login_tips" style="box-sizing: content-box padding-bottom: 8px">
             <div class="tips_note">登陆后高清播放更流畅</div>
@@ -55,8 +53,13 @@
 </template>
 
 <script>
-
+import ChildComp from './components/ChildComp.vue';
 export default {
+  // components
+  components: {
+    ChildComp,
+  },
+
   // 预定义属性
   name: 'App',
   // 组件当中所有的响应式数据
@@ -66,6 +69,7 @@ export default {
         name: '',
         passwd: ''
       },
+      isShowChild: true,
     }
   },
   // 方法
@@ -102,6 +106,10 @@ export default {
     setTimeout(() => {
       this.isShow = false,
         this.isHighLight = true
+    }, 3000)
+
+    setInterval(() => {
+      this.isShowChild = !this.isShowChild;
     }, 3000)
   },
 }
@@ -228,13 +236,5 @@ body {
   }
 }
 
-/* CDN 服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
-@font-face {
-  font-family: "wjx";
-  font-weight: 400;
-  src: 
-  url("//at.alicdn.com/wf/webfont/ulEPdPWG6NSR/VQJlkMkMTEsHgLVywUfh7.woff2") format("woff2"),
-  url("//at.alicdn.com/wf/webfont/ulEPdPWG6NSR/ysottBxmvr_rx3sL-F_KG.woff") format("woff");
-  font-display: swap;
-}
+
 </style>
